@@ -2,26 +2,8 @@
   padding: 0;
   margin: 0;
 }
-
-td, th {
-  vertical-align: middle;
-  text-align: center;
-}
-
-td {
-  &:first-of-type,
-  &:first-of-type > div {
-    height: 200px;
-    width: 250px;
-  }
-}
-
-svg {
-  height: 150px;
-  width: 240px;
-}
-
-.input-group {
-  margin: 20px 0;
-} 
-  
+ form {
+   a {
+     margin-left: 10px;
+   }
+ }

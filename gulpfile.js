@@ -11,6 +11,7 @@ const gulpWebpack = require('webpack-stream');
 const WebpackDevServer = require('webpack-dev-server');
 const WebPackConfig = require('./webpack.config.js');
 const gutil = require('gulp-util');
+const path = require('path');
 
 const JS_PATH = './src/**/*.js';
 const STYLE_PATH = './style/**/*.scss';
@@ -32,11 +33,17 @@ gulp.task('styles', (done) => {
 });
 
 gulp.task('webpack-dev-server', () => {
-    var compiler = webpack(WebPackConfig);
+    let compiler = webpack(WebPackConfig);
 
-    new WebpackDevServer(compiler, {
-        // server and middleware options
-    }).listen(8080, "localhost", function(err) {
+    let server = new WebpackDevServer(compiler, {
+      historyApiFallback: true
+    });
+
+    // server.use('/', function(req, res) {
+    //   res.sendFile(path.join(__dirname+'/index.html'));
+    // });
+
+    server.listen(8080, "localhost", function(err) {
         if(err) throw new gutil.PluginError("webpack-dev-server", err);
         // Server listening
         gutil.log("[webpack-dev-server]", "http://localhost:8080/webpack-dev-server/index.html");
